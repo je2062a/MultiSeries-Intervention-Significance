@@ -23,29 +23,30 @@
 percent_significant <- function(ts, df) {
   
 # Create list of columns in ts that contain non-date data.
-  num_of_col <- (2:ncol(stock))
+num_of_col <- (2:ncol(stock))
   
   
 # Create data frames for each individual series. 
-  for (i in num_of_col) +
+for (i in num_of_col){
     assign(paste("x", i, sep = ""), select(stock, 1, i))
-  
+}
   
 # List data frames.
-  xlist <- list(for (i in num_of_col){
-                  paste(", x", i, sep = "")
-    })
-                
+dflist <- lapply(paste('x', seq(2,(ncol(stock))), sep=''), get)
 }
 
-for (i in num_of_col){
-  paste(", x", i, sep = "")
-  }
 
 
 lapply(list(df1, df2), function(w) { w$Avg <- rowMeans(w[1:2]); w })
 
 
+d1 <- data.frame(y1=c(1,2,3), y2=c(4,5,6))
+d2 <- data.frame(y1=c(3,2,1), y2=c(6,5,4))
+d3 <- data.frame(y1=c(6,5,4), y2=c(3,2,1))
+d4 <- data.frame(y1=c(9,9,9), y2=c(8,8,8))
+
+my.list2 <- lapply(paste('d', seq(2,4,1), sep=''), get)
+my.list2
 
 
 
@@ -54,9 +55,4 @@ lapply(list(df1, df2), function(w) { w$Avg <- rowMeans(w[1:2]); w })
 
 
 
-for (i in 2:ncol(stock)) assign(paste("x", i, sep = ""), select(stock, 1, i))
-  
-xlist <- list(x2, x3, x4, x5)
-
-lapply(xlist, 'filter', time > 50)
 
