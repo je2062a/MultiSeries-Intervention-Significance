@@ -11,8 +11,8 @@
 #' 
 #'  @author James D. Ensor
 #'  
-#'  @param 
-#'  @param 
+#'  @param ts A data frame containing multiple time-series.
+#'  @param df A data frame containing the time of intervention for each series.
 #'  
 #'  @return 
 #'  
@@ -20,6 +20,6 @@
 #'  
 #'  @export
 
-percent_significant <- function(df) {
+percent_significant <- function(ts, df) {
   
 }
