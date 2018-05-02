@@ -1,4 +1,4 @@
-#' percent_significant
+#' t_multiseries
 #' 
 #' Calculates the percentage of time-series that experienced significant change 
 #' due to an intervention.
@@ -11,7 +11,7 @@
 #' 
 #'  @author James D. Ensor
 #'  
-#'  @param ts A data frame containing multiple time-series.
+#'  @param x A data frame containing multiple time-series.
 #'    
 #'  @examples percent_significant()  
 #'  
@@ -19,7 +19,7 @@
 
 
 
-percent_significant <- function(x) {
+t_multiseries <- function(x) {
   
 
   
