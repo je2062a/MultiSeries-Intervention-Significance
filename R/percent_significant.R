@@ -22,7 +22,7 @@
 
 
 
-percent_significant <- function(ts, df) {
+percent_significant <- function(x) {
   
 # Create list of columns in ts that contain non-date data.
 num_of_col <- (2:ncol(stock))
@@ -39,29 +39,30 @@ tslist <- lapply(paste('x', seq(2,(ncol(stock))), sep=''), get)
 
 
 
-# Split data by time of intervention
-pre_list <- lapply(tslist, function(x) { filter(x, x[, 1] < 0)})
+# Split data by time of intervention.
+pre_list <- lapply(tslist, function(y) { filter(y, y[, 1] < 0)})
        
-post_list <- lapply(tslist, function(x) { filter(x, x[, 1] > 0)})                   
+post_list <- lapply(tslist, function(y) { filter(y, y[, 1] > 0)})
+
+
+
+# Drop time column.
+pre_list <- lapply(pre_list, function(x) { x[1] <- NULL; x })
+
+post_list <- lapply(post_list, function(x) { x[1] <- NULL; x })
+
+
+
+# Calculate the mean of pre and post intervention data for each series
+pre_means <- lapply(pre_list, function(w) { colMeans(w)})
+
+
+post_means <- lapply(post_list, function(w) { colMeans(w)})
                    
                    
 }                   
-
-                   
-if ((colnames(x[, 2]) == df[, 1]) == (FALSE   
+ 
 
 
      
-                   
-       
-# Calculate the mean of pre and post intervention data for each series
-lapply(list(df1, df2), function(w) { w$Avg <- rowMeans(w[1:2]); w })
-
-
-
-
-
-
-
-
-
+            
