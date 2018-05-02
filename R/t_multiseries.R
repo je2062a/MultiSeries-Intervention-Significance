@@ -1,25 +1,3 @@
-#' t_multiseries
-#' 
-#' Calculates the percentage of time-series that experienced significant change 
-#' due to an intervention.
-#'  
-#' This function provides simple analysis of multiple time-series data sets. 
-#' this function requires that the time-series data be pre-synchronized so that
-#' time of intervention is zero (t = 0) for all series. The function returns the
-#' same results as a regualr t-test, where the p-value relates how likely the 
-#' post-intervention data was unaffected by the intervention.
-#' 
-#'  @author James D. Ensor
-#'  
-#'  @param x A data frame containing multiple time-series.
-#'    
-#'  @examples
-#'  t_multiseries(stock)  
-#'  
-#'  @export
-
-
-
 t_multiseries <- function(x) {
   
 
@@ -29,6 +7,12 @@ for (i in (2:ncol(stock))){
     assign(paste('x', i, sep = ''), select(stock, 1, i))
   } 
   
+# It seems that this is where the problem is. The function below, in beginning 
+# its lapply loop, searches for an object "x2" that should be supplied by the 
+# function above. When I run these manually, the above function creates several 
+# independant data frames in the global environment, and then the lower function 
+# references those. However, when the total function is run, it seems that the 
+# upper function's output it not saved in the local environment. 
 
 # List data frames.
 tslist <- lapply(paste('x', seq(2,(ncol(stock))), sep=''), get)
