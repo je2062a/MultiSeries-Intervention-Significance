@@ -13,7 +13,8 @@
 #'  
 #'  @param x A data frame containing multiple time-series.
 #'    
-#'  @examples percent_significant()  
+#'  @examples
+#'  t_multiseries(stock)  
 #'  
 #'  @export
 
@@ -24,13 +25,13 @@ t_multiseries <- function(x) {
 
   
 # Create data frames for each individual series. 
-for (i in (2:ncol(x))){
-    assign(paste('x', i, sep = ''), select(x, 1, i))
-} 
+for (i in (2:ncol(stock))){
+    assign(paste('x', i, sep = ''), select(stock, 1, i))
+  } 
   
 
 # List data frames.
-tslist <- lapply(paste('x', seq(2,(ncol(x))), sep=''), get)
+tslist <- lapply(paste('x', seq(2,(ncol(stock))), sep=''), get)
 
 
 # Split data by time of intervention.
@@ -60,7 +61,7 @@ post_means <- (do.call(rbind, post_means))[, 1]
 
 
 # Calculate the p-value.
-t.test(pre_means, post_means)
+return(t.test(pre_means, post_means))
 }                   
  
 
