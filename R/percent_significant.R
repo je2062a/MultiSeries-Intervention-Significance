@@ -4,18 +4,16 @@
 #' due to an intervention.
 #'  
 #' This function provides simple analysis of multiple time-series data sets. 
-#' This function requires the inclusion of a data set that defines the time of
-#' intervention. The output of this function represents the percent of 
-#' individual time-series that experienced a significant difference between 
-#' pre-intervention and post-intervention data.
+#' this function requires that the time-series data be pre-synchronized so that
+#' time of intervention is zero (t = 0) for all series. The function returns the
+#' same results as a regualr t-test, where the p-value relates how likely the 
+#' post-intervention data was unaffected by the intervention.
 #' 
 #'  @author James D. Ensor
 #'  
 #'  @param ts A data frame containing multiple time-series.
-#'  
-#'  @return 
-#'  
-#'  @examples  
+#'    
+#'  @examples percent_significant()  
 #'  
 #'  @export
 
@@ -26,13 +24,13 @@ percent_significant <- function(x) {
 
   
 # Create data frames for each individual series. 
-for (i in (2:ncol(stock))){
-    assign(paste("x", i, sep = ""), select(stock, 1, i))
-}
+for (i in (2:ncol(x))){
+    assign(paste('x', i, sep = ''), select(x, 1, i))
+} 
   
 
 # List data frames.
-tslist <- lapply(paste('x', seq(2,(ncol(stock))), sep=''), get)
+tslist <- lapply(paste('x', seq(2,(ncol(x))), sep=''), get)
 
 
 # Split data by time of intervention.
