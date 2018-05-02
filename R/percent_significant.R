@@ -12,11 +12,10 @@
 #'  @author James D. Ensor
 #'  
 #'  @param ts A data frame containing multiple time-series.
-#'  @param df A data frame containing the time of intervention for each series.
 #'  
 #'  @return 
 #'  
-#'  @examples 
+#'  @examples  
 #'  
 #'  @export
 
@@ -24,20 +23,16 @@
 
 percent_significant <- function(x) {
   
-# Create list of columns in ts that contain non-date data.
-num_of_col <- (2:ncol(x))
 
-
-
+  
 # Create data frames for each individual series. 
-for (i in num_of_col){
-    assign(paste("x", i, sep = ""), select(x, 1, i))
+for (i in (2:ncol(stock))){
+    assign(paste("x", i, sep = ""), select(stock, 1, i))
 }
   
 
 # List data frames.
-tslist <- lapply(paste('x', seq(2,(ncol(x))), sep=''), get)
-
+tslist <- lapply(paste('x', seq(2,(ncol(stock))), sep=''), get)
 
 
 # Split data by time of intervention.
@@ -64,9 +59,12 @@ post_means <- lapply(post_list, function(w) { colMeans(w)})
 pre_means <- (do.call(rbind, pre_means))[, 1]
   
 post_means <- (do.call(rbind, post_means))[, 1]
+
+
+# Calculate the p-value.
+t.test(pre_means, post_means)
 }                   
  
 
 
-     
             
