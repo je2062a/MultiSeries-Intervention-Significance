@@ -1,0 +1,14 @@
+Package: multiseries_intervention
+Type: Package
+Title: Analyzes Interrupted Multiple Time-Series Data
+Version: 0.1.0
+Author: James D. Ensor
+Maintainer: James D. Ensor <je2062a@student.american.edu>
+Description: a package of designed to provide simple analysis of multi-series 
+     intervention data. The package's functions serve the primary purpose of 
+     ennacting a t-test on the multiple-time-series samples to analyze whether
+     there was a significant change in data correlated to the intervention. 
+License: EPL-2.0
+Encoding: UTF-8
+LazyData: true
+Requires: Tidyverse
