@@ -9,6 +9,7 @@ Run this command in the R console:
 ```R
 devtools::install_github("je2062a/MultiSeries-Intervention-Significance")
 ```
+## Functions
 
 ### t_sync
 
